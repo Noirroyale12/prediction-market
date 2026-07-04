@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noir Technologies — Diseñamos el futuro con elegancia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d11;
+    --bg-soft: #0d1116;
+    --card: #12171d;
+    --card-2: #161c23;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --cyan: #2dd7ef;
+    --cyan-dim: #0f2b31;
+    --purple: #8b7cf6;
+    --text-1: #f4f7f8;
+    --text-2: #a3adb6;
+    --text-3: #6b7580;
+    --radius-lg: 26px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+    --maxw: 1120px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text-1);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Sora', 'Inter', sans-serif;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  p{ margin:0; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  .container{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(45,215,239,0.35);
+    background: rgba(45,215,239,0.06);
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .grad-text{
+    background: linear-gradient(90deg, #2dd7ef, #8b7cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding: 15px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, opacity .15s ease, background .15s ease;
+    white-space: nowrap;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn:focus-visible{ outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .btn-primary{ background: var(--cyan); color: #04181c; }
+  .btn-primary:hover{ opacity: .88; }
+  .btn-ghost{ background: var(--card-2); color: var(--text-1); border-color: var(--border-strong); }
+  .btn-ghost:hover{ background: #1c232b; }
+  .btn-soon{
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    color: var(--text-3);
+    cursor: default;
+    width: 100%;
+  }
+
+  /* Nav */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(10,13,17,0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+  }
+  .logo .dot{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+  .nav .btn{ padding: 11px 20px; font-size: 14px; }
+
+  /* Hero */
+  .hero{ position: relative; overflow: hidden; padding: 88px 0 56px; }
+  .hero-glow{
+    position:absolute; inset: -20% -10% auto -10%;
+    height: 620px;
+    background: radial-gradient(closest-side, rgba(20,80,90,0.55), rgba(20,80,90,0) 70%);
+    pointer-events:none;
+  }
+  .hero-content{ position:relative; max-width: 760px; }
+  .hero h1{
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-top: 22px;
+  }
+  .hero .lead{
+    margin-top: 20px;
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 560px;
+  }
+  .hero-actions{
+    display:flex; flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .stats-bar{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 20px;
+  }
+  .stat{ text-align:center; }
+  .stat .num{
+    font-family:'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 4vw, 30px);
+  }
+  .stat .label{
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  /* Section shell */
+  .section{ padding: 88px 0; }
+  .section-head{ max-width: 620px; margin-bottom: 44px; }
+  .section-head h2{ font-size: clamp(28px, 4.5vw, 38px); font-weight: 700; }
+  .section-head p{ margin-top: 14px; color: var(--text-2); font-size: 16px; }
+
+  /* Product cards */
+  .products-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 900px){
+    .products-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .product-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display:flex; flex-direction:column;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .product-card:hover{ border-color: var(--border-strong); transform: translateY(-2px); }
+  .card-visual{
+    position: relative;
+    height: 190px;
+    display:flex; align-items:flex-start; justify-content:space-between;
+    padding: 18px;
+  }
+  .card-visual .badge{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size: 12.5px; font-weight: 600;
+    color: var(--cyan);
+    border: 1px solid rgba(45,215,239,0.4);
+    background: rgba(6,12,14,0.55);
+    padding: 7px 13px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .card-visual .soon{
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #04181c;
+    background: var(--cyan);
+    padding: 6px 11px;
+    border-radius: 999px;
+  }
+  .visual-finance{ background:
+    radial-gradient(120% 100% at 100% 0%, rgba(45,215,239,0.22), transparent 55%),
+    linear-gradient(160deg, #0c1a20, #08252b); }
+  .visual-ai{ background:
+    radial-gradient(120% 100% at 0% 0%, rgba(139,124,246,0.25), transparent 55%),
+    linear-gradient(160deg, #0c1220, #101033); }
+  .visual-casino{ background:
+    radial-gradient(120% 100% at 100% 100%, rgba(45,215,239,0.18), transparent 55%),
+    linear-gradient(160deg, #0a1014, #10161c); }
+
+  .card-icon-mark{
+    position:absolute; right: -18px; bottom: -18px;
+    width: 130px; height: 130px;
+    opacity: 0.5;
+  }
+
+  .card-body{ padding: 24px 22px 26px; display:flex; flex-direction:column; gap: 14px; flex:1; }
+  .card-body h3{ font-size: 21px; font-weight: 700; }
+  .card-body .desc{ color: var(--text-2); font-size: 14.5px; }
+
+  .mini-stats{
+    display:flex; gap: 10px;
+  }
+  .mini-stat{
+    flex:1;
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    text-align:center;
+  }
+  .mini-stat .n{ font-family:'Sora',sans-serif; font-weight:800; font-size: 17px; color: var(--cyan); }
+  .mini-stat .l{ font-size: 11.5px; color: var(--text-2); margin-top:2px; }
+
+  .pill-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .pill{
+    font-size: 12.5px; font-weight: 600;
+    color: var(--text-2);
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    padding: 7px 12px;
+    border-radius: 999px;
+  }
+
+  .disclaimer{
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin-top: -4px;
+  }
+
+  /* Principles */
+  .principles-grid{
+    display:grid; grid-template-columns: 1fr; gap: 20px;
+  }
+  @media (min-width: 900px){
+    .principles-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .principle-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 34px 26px;
+    text-align:center;
+  }
+  .icon-circle{
+    width: 56px; height:56px;
+    border-radius: 50%;
+    background: var(--cyan-dim);
+    display:flex; align-items:center; justify-content:center;
+    margin: 0 auto 20px;
+  }
+  .icon-circle svg{ width: 24px; height:24px; stroke: var(--cyan); }
+  .principle-card h3{ font-size: 19px; font-weight:700; }
+  .principle-card p{ margin-top: 10px; color: var(--text-2); font-size: 14.5px; }
+
+  /* Final CTA */
+  .cta-final{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 56px 32px;
+    text-align:center;
+  }
+  .cta-final h2{ font-size: clamp(26px, 4.5vw, 36px); font-weight:700; }
+  .cta-final .grad-text{ display:block; }
+  .cta-final p{ margin: 18px auto 0; max-width: 520px; color: var(--text-2); }
+  .cta-final .hero-actions{ justify-content:center; margin-top: 28px; }
+
+  footer{
+    border-top: 1px solid var(--border);
+    padding: 28px 24px;
+    text-align:center;
+    color: var(--text-3);
+    font-size: 13px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span> NOIR</div>
+    <a href="#productos" class="btn btn-primary">Empezar →</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">✨ Tecnología de primer nivel</span>
+      <h1>Diseñamos el futuro<br><span class="grad-text">con elegancia</span></h1>
+      <p class="lead">Noir Technologies crea productos digitales premium donde la confianza, la innovación y el lujo convergen para transformar industrias.</p>
+      <div class="hero-actions">
+        <a href="#productos" class="btn btn-primary">Descubrir productos →</a>
+        <a href="#contacto" class="btn btn-ghost">Contactar</a>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat"><div class="num">3</div><div class="label">Productos flagship</div></div>
+        <div class="stat"><div class="num">99.9%</div><div class="label">Uptime garantizado</div></div>
+        <div class="stat"><div class="num">24/7</div><div class="label">Soporte premium</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section" id="productos">
+    <div class="container">
+      <div class="section-head">
+        <h2>Productos <span class="grad-text">flagship</span></h2>
+        <p>Tres plataformas diseñadas para liderar sus categorías con estilo y rendimiento excepcional.</p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Noir Finance -->
+        <article class="product-card">
+          <div class="card-visual visual-finance">
+            <span class="badge">💳 Plataforma Financiera</span>
+            <span class="soon">Próximamente</span>
+          </div>
+          <div class="card-body">
+            <h3>Noir Finance</h3>
+            <p class="desc">Plataforma financiera de nueva generación que combina análisis de mercado en tiempo real, gestión de activos y ejecución de operaciones con precisión milimétrica.</p>
+            <div class="mini-stats">
+              <div class="mini-stat"><div class="n">1,000+</div><div class="l">activos</div></div>
+              <div class="mini-stat"><div class="n">+$5M</div><div class="l">en activos</div></div>
+            </div>
+            <p class="disclaimer">*Cifras de referencia — confirma y actualiza con datos reales antes de publicar.</p>
+            <div class="pill-row">
+              <span class="pill">Datos en tiempo real</span>
+              <span class="pill">Trading avanzado</span>
+              <span class="pill">Cartera inteligente</span>
+            </div>
+            <button class="btn btn-soon" disabled>Próximamente</button>
+          </div>
+        </article>
+
+        <!-- Noir AI -->
+        <article class="product-card">
+          <div class="card-visual visual-ai">
+            <span class="badge">🧠 Asistente Inteligente</span>
+            <span class="soon">Próximamente</span>
+          </div>
+          <div class="card-body">
+            <h3>Noir AI</h3>
+            <p class="desc">Asistente impulsado por inteligencia artificial que anticipa necesidades, automatiza decisiones complejas y eleva la productividad con una interfaz elegante e intuitiva.</p>
+            <div class="pill-row">
+              <span class="pill">Procesamiento NLP</span>
+              <span class="pill">Automatización</span>
+              <span class="pill">Análisis predictivo</span>
+            </div>
+            <button class="btn btn-soon" disabled>Próximamente</button>
+          </div>
+        </article>
+
+        <!-- Noir Royale -->
+        <article class="product-card">
+          <div class="card-visual visual-casino">
+            <span class="badge">👑 Casino Premium</span>
+            <span class="soon">Próximamente</span>
+          </div>
+          <div class="card-body">
+            <h3>Noir Royale</h3>
+            <p class="desc">Una experiencia de casino de alto nivel donde el lujo se encuentra con la tecnología. Seguridad de grado bancario y un ecosistema diseñado para los jugadores más exigentes.</p>
+            <div class="pill-row">
+              <span class="pill">Juegos exclusivos</span>
+              <span class="pill">Seguridad 24/7</span>
+              <span class="pill">Pagos instantáneos</span>
+            </div>
+            <button class="btn btn-soon" disabled>Próximamente</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="section" id="principios">
+    <div class="container">
+      <div class="section-head">
+        <h2>Impulsados por tres <span class="grad-text">principios</span></h2>
+        <p>Cada línea de código y cada decisión de diseño están alineados con lo que nos define.</p>
+      </div>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+          </div>
+          <h3>Confianza</h3>
+          <p>Infraestructura segura y transparente en cada producto.</p>
+        </div>
+        <div class="principle-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          </div>
+          <h3>Innovación</h3>
+          <p>Tecnología de vanguardia que redefine lo posible.</p>
+        </div>
+        <div class="principle-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>
+          </div>
+          <h3>Lujo</h3>
+          <p>Experiencias cuidadas al detalle para usuarios exigentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="cta-final">
+        <h2>¿Listo para elevar tu <span class="grad-text">experiencia?</span></h2>
+        <p>Descubre cómo Noir Technologies puede transformar tu negocio con productos premium de última generación.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Escríbenos →</a>
+          <a href="#productos" class="btn btn-ghost">Ver productos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Noir Technologies. Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
